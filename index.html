@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philips QR-Code-Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="container">
+        <h1>Philips<br>QR-Code-Generator</h1>
+        <p class="subtitle">
+            Text, Link, WLAN, Kontakt und mehr direkt im Browser in einen
+            QR-Code verwandeln – nichts wird irgendwohin hochgeladen.
+        </p>
+
+        <div class="type-toggle" role="tablist" aria-label="Inhaltstyp wählen">
+            <button type="button" class="type-btn active" data-type="link">Link</button>
+            <button type="button" class="type-btn" data-type="file">Datei</button>
+            <button type="button" class="type-btn" data-type="text">Text</button>
+            <button type="button" class="type-btn" data-type="wifi">WLAN</button>
+            <button type="button" class="type-btn" data-type="contact">Kontakt</button>
+            <button type="button" class="type-btn" data-type="email">E-Mail</button>
+            <button type="button" class="type-btn" data-type="sms">SMS</button>
+            <button type="button" class="type-btn" data-type="phone">Anruf</button>
+        </div>
+
+        <!-- Link -->
+        <div class="field-group" data-fields="link">
+            <label for="linkUrl">Link (URL)</label>
+            <input type="text" id="linkUrl" placeholder="https://pjanssen.cc">
+        </div>
+
+        <!-- Datei (gleiche Logik wie Link, eigener Tab für Klarheit) -->
+        <div class="field-group hidden" data-fields="file">
+            <label for="fileUrl">Link zur Datei</label>
+            <input type="text" id="fileUrl" placeholder="https://files.pjanssen.cc/download/AbCd1234">
+            <p class="field-hint">QR-Codes können keine Datei-Inhalte selbst speichern, nur einen Link dorthin – z. B. den Link aus deinem Datei-Uploader.</p>
+        </div>
+
+        <!-- Text -->
+        <div class="field-group hidden" data-fields="text">
+            <label for="plainText">Text</label>
+            <textarea id="plainText" rows="3" placeholder="Ein beliebiger Text …"></textarea>
+        </div>
+
+        <!-- WLAN -->
+        <div class="field-group hidden" data-fields="wifi">
+            <label for="wifiSsid">Netzwerkname (SSID)</label>
+            <input type="text" id="wifiSsid" placeholder="Mein WLAN">
+
+            <label for="wifiPassword">Passwort</label>
+            <input type="text" id="wifiPassword" placeholder="Passwort">
+
+            <label for="wifiEncryption">Verschlüsselung</label>
+            <select id="wifiEncryption">
+                <option value="WPA" selected>WPA/WPA2</option>
+                <option value="WEP">WEP</option>
+                <option value="nopass">Kein Passwort (offen)</option>
+            </select>
+
+            <label class="checkbox-label">
+                <input type="checkbox" id="wifiHidden">
+                Verstecktes Netzwerk
+            </label>
+        </div>
+
+        <!-- Kontakt (vCard) -->
+        <div class="field-group hidden" data-fields="contact">
+            <label for="contactFirstName">Vorname</label>
+            <input type="text" id="contactFirstName" placeholder="Philip">
+
+            <label for="contactLastName">Nachname</label>
+            <input type="text" id="contactLastName" placeholder="Janßen">
+
+            <label for="contactPhone">Telefon</label>
+            <input type="text" id="contactPhone" placeholder="+49 151 23456789">
+
+            <label for="contactEmail">E-Mail</label>
+            <input type="text" id="contactEmail" placeholder="mail@pjanssen.cc">
+
+            <label for="contactOrg">Firma / Organisation</label>
+            <input type="text" id="contactOrg" placeholder="Optional">
+
+            <label for="contactWebsite">Website</label>
+            <input type="text" id="contactWebsite" placeholder="https://pjanssen.cc">
+        </div>
+
+        <!-- E-Mail -->
+        <div class="field-group hidden" data-fields="email">
+            <label for="emailAddress">E-Mail-Adresse</label>
+            <input type="text" id="emailAddress" placeholder="mail@pjanssen.cc">
+
+            <label for="emailSubject">Betreff</label>
+            <input type="text" id="emailSubject" placeholder="Optional">
+
+            <label for="emailBody">Nachricht</label>
+            <textarea id="emailBody" rows="2" placeholder="Optional"></textarea>
+        </div>
+
+        <!-- SMS -->
+        <div class="field-group hidden" data-fields="sms">
+            <label for="smsPhone">Telefonnummer</label>
+            <input type="text" id="smsPhone" placeholder="+49 151 23456789">
+
+            <label for="smsMessage">Nachricht</label>
+            <textarea id="smsMessage" rows="2" placeholder="Optional"></textarea>
+        </div>
+
+        <!-- Anruf -->
+        <div class="field-group hidden" data-fields="phone">
+            <label for="phoneNumber">Telefonnummer</label>
+            <input type="text" id="phoneNumber" placeholder="+49 151 23456789">
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="design-row">
+            <div class="design-col">
+                <label for="colorDots">Vordergrund</label>
+                <input type="color" id="colorDots" value="#18181b">
+            </div>
+            <div class="design-col">
+                <label for="colorBackground">Hintergrund</label>
+                <input type="color" id="colorBackground" value="#ffffff">
+            </div>
+            <div class="design-col design-col-wide">
+                <label for="dotStyle">Stil</label>
+                <select id="dotStyle">
+                    <option value="square">Eckig (klassisch)</option>
+                    <option value="rounded">Abgerundet</option>
+                    <option value="dots" selected>Punkte</option>
+                    <option value="classy">Elegant</option>
+                    <option value="classy-rounded">Elegant, rund</option>
+                    <option value="extra-rounded">Extra rund</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="qrPreview" class="qr-preview"></div>
+        <p id="qrHint" class="qr-hint">Gib oben etwas ein, um den QR-Code zu erzeugen.</p>
+
+        <button id="downloadButton" disabled>Als PNG herunterladen</button>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

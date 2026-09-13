@@ -1,0 +1,259 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Arial, sans-serif;
+    background: #f4f4f5;
+    color: #18181b;
+}
+
+.container {
+    width: min(90%, 600px);
+    padding: 40px;
+
+    background: white;
+    border-radius: 16px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.subtitle {
+    margin-top: 0;
+    margin-bottom: 24px;
+    text-align: center;
+    color: #71717a;
+    line-height: 1.5;
+}
+
+/* Inhaltstyp-Auswahl */
+.type-toggle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 4px;
+    background: #f4f4f5;
+    border-radius: 14px;
+    margin-bottom: 20px;
+}
+
+.type-btn {
+    flex: 1 1 auto;
+    width: auto;
+    margin-top: 0;
+    padding: 8px 10px;
+    font-size: 12.5px;
+    font-weight: 600;
+    background: transparent;
+    color: #71717a;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+    white-space: nowrap;
+}
+
+.type-btn:hover:not(:disabled) {
+    opacity: 1;
+    color: #3f3f46;
+}
+
+.type-btn.active {
+    background: #ffffff;
+    color: #4f46e5;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.type-btn.active:hover {
+    color: #4f46e5;
+}
+
+/* Formularfelder */
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.field-group.hidden {
+    display: none;
+}
+
+.field-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #3f3f46;
+    margin-top: 10px;
+}
+
+.field-group label:first-child {
+    margin-top: 0;
+}
+
+.field-group input[type="text"],
+.field-group input[type="color"],
+.field-group select,
+.field-group textarea {
+    padding: 10px 12px;
+    border: 1px solid #d4d4d8;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    width: 100%;
+}
+
+.field-group textarea {
+    resize: vertical;
+}
+
+.checkbox-label {
+    flex-direction: row !important;
+    align-items: center;
+    gap: 8px !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #3f3f46;
+}
+
+.checkbox-label input {
+    width: auto;
+}
+
+.field-hint {
+    margin: 2px 0 0;
+    font-size: 12px;
+    color: #a1a1aa;
+    line-height: 1.4;
+}
+
+.divider {
+    height: 1px;
+    background: #f0f0f0;
+    margin: 24px 0 20px;
+}
+
+/* Design-Optionen */
+.design-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.design-col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.design-col label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #3f3f46;
+}
+
+.design-col-wide {
+    flex: 1;
+}
+
+.design-col select {
+    padding: 9px 10px;
+    border: 1px solid #d4d4d8;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: inherit;
+    width: 100%;
+    height: 40px;
+}
+
+input[type="color"] {
+    padding: 3px;
+    height: 40px;
+    width: 52px;
+    border: 1px solid #d4d4d8;
+    border-radius: 8px;
+    cursor: pointer;
+    background: none;
+}
+
+/* QR-Vorschau */
+.qr-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    padding: 16px;
+    background: #fafafa;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+}
+
+.qr-preview svg,
+.qr-preview canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+.qr-hint {
+    text-align: center;
+    font-size: 12.5px;
+    color: #a1a1aa;
+    margin: 10px 0 0;
+}
+
+/* Buttons (gleiche Basis wie beim Uploader) */
+button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px 18px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #18181b;
+    color: white;
+
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+    opacity: 0.85;
+}
+
+button:disabled {
+    background: #d4d4d8;
+    cursor: not-allowed;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 25px;
+    }
+
+    .type-btn {
+        flex: 1 1 30%;
+    }
+
+    .design-row {
+        flex-wrap: wrap;
+    }
+}
